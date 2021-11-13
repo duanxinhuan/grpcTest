@@ -77,8 +77,8 @@ Photo convertToPhoto(Map photo) => Photo.fromJson(
     '{"1": ${photo['albumId']}, "2": ${photo['id']}, "3": "${photo['title']}", "4": "${photo['url']}"}');
 
 void main() async {
-  print(Platform.environment['PORT']);
-  var port = int.parse(Platform.environment['PORT']) ?? 5000;
+  var envValue = Platform.environment['PORT'] ?? '8080';
+  var port = int.parse(envValue);
   final server = Server([AlbumService()]);
   await server.serve(port: port);
   print('Server listening on port ${server.port}');
