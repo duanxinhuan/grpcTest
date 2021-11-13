@@ -4,14 +4,16 @@ import 'package:grpcTest/grpc_demo.dart';
 
 void main() async {
   final channel = ClientChannel(
-    '0.0.0.0',
-    port: 8080,
-    options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    'https://test-rffbfesyba-km.a.run.app',
+    options: const ChannelOptions(
+      credentials: ChannelCredentials.insecure(),
+    ),
   );
 
   final stub = AlbumServiceClient(channel);
 
   // unary style responses
+
   var response = await stub.getAlbums(AlbumRequest());
   print('Response received: ${response.writeToJson()}');
 
